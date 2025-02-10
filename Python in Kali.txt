@@ -1,25 +1,3 @@
-cd
-mkdir Pythonprograms
-cd Pythonprograms
-nano Test.py
-#!/usr/bin/python
-
-print("Hello World!)
-
-//ctrl + o  to save
-//ctrl + x  to exit
-
-python Tets.py
-
-./Test.py
-//Permission Denied because the test.py is not an executable file so,
-
-chmod +x Test.py
-./Test/py
-//Now its executable and have to do this for all the programs created
-
-
-
 Creating A Scanning Tool
 
 
